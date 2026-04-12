@@ -97,7 +97,7 @@ export function PokemonCard({ pokemon, message }: { pokemon: PokemonDetails; mes
           </div>
 
           <div className="bg-pk-yellow/15 border-2 border-pk-yellow/30 rounded-[2rem] p-5 transform -rotate-1 shadow-inner">
-            <p className="text-pk-dark-blue font-bold italic tracking-tight leading-relaxed">
+            <p className="text-pk-dark-blue font-bold italic tracking-tight leading-relaxed whitespace-pre-line">
               "{message}"
             </p>
           </div>

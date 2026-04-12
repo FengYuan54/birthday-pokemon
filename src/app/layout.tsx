@@ -54,7 +54,7 @@ export default function RootLayout({
             {children}
           </main>
           <footer className="py-8 text-center text-sm text-gray-500 border-t border-gray-100 bg-white">
-            <p>© 2026 生日宝可梦项目. Powered by PokeAPI.</p>
+            <p>© 2026 birth-pokemon. Powered by PokeAPI. -stillFY</p>
           </footer>
         </AuthProvider>
       </body>

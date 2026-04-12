@@ -111,5 +111,6 @@ export function generateBirthdayMessage(pokemonName: string, month: number, day:
     `🍭 确认过眼神，${pokemonName} 觉得你散发着全世界最温柔的光芒喔！`,
     `🎨 你的灵魂颜色，和 ${pokemonName} 的属性磁场简直是绝配呀！`,
   ];
-  return messages[Math.floor(Math.random() * messages.length)];
+  const msg = messages[Math.floor(Math.random() * messages.length)];
+  return `${msg}\n\n— birth-pokemon / stillFY`;
 }
