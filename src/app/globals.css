@@ -4,13 +4,19 @@
   --font-inter: var(--font-inter);
   --font-luckiest-guy: var(--font-luckiest-guy);
   --font-staatliches: var(--font-staatliches);
+  --font-rounded: var(--font-quicksand);
+  --font-pixel: var(--font-dot-gothic);
   
-  --color-pk-red: #FF0000;
+  /* Official Pokémon Color Palette (WCAG Compliant Base) */
+  --color-pk-red: #FF5A5F;
   --color-pk-white: #FFFFFF;
   --color-pk-yellow: #FFCB05;
   --color-pk-blue: #2A75BB;
   --color-pk-dark-blue: #3C5AA6;
   --color-pk-gold: #C7A008;
+  --color-pk-grass: #7AC74C;
+  --color-pk-fire: #EE8130;
+  --color-pk-water: #6390F0;
 
   @keyframes shake {
     0%, 100% { transform: rotate(0deg); }
@@ -30,13 +36,26 @@
     to { background-position: 100px 100px; }
   }
 
+  @keyframes mesh-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes title-entrance {
+    0% { opacity: 0; transform: translateY(30px) scale(0.9); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  }
+
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
   --animate-float: float 3s ease-in-out infinite;
   --animate-bg-scroll: bg-scroll 20s linear infinite;
+  --animate-mesh: mesh-gradient 15s ease infinite;
+  --animate-title: title-entrance 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 :root {
-  --background: #fdfdfd;
+  --background: #f0f4f8;
   --foreground: #1a1a1a;
 }
 
@@ -47,19 +66,33 @@ body {
   overflow-x: hidden;
 }
 
-/* Pokeball Pattern Background */
-.pokeball-bg {
-  background-image: radial-gradient(circle at center, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.03) 10%, transparent 10.1%);
-  background-size: 40px 40px;
-  animation: bg-scroll 60s linear infinite;
+/* Advanced Main Title Styling */
+.pokemon-font {
+  font-family: var(--font-pixel), var(--font-rounded), "Microsoft YaHei UI", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.main-title {
+  @apply font-luckiest-guy tracking-tighter leading-none text-pk-dark-blue;
+  font-weight: 900;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 6px var(--color-pk-white);
+  text-shadow: 0 4px 12px rgba(60, 90, 166, 0.3), 0 0 20px rgba(255, 255, 255, 0.8);
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+}
+
+.main-title-gradient {
+  background: linear-gradient(180deg, #3C5AA6 0%, #2A75BB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Glassmorphism */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 /* Pokemon Type Badges Styles */

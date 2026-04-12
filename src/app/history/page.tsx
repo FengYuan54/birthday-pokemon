@@ -79,7 +79,16 @@ export default async function HistoryPage() {
               <p className="text-[10px] font-black text-pk-blue uppercase tracking-widest bg-pk-blue/5 py-1 px-3 rounded-full inline-block">
                 {formatDate(item.birthday)}
               </p>
-              <h2 className="text-2xl font-black text-gray-900 tracking-tighter uppercase italic">{item.pokemonName}</h2>
+              <div className="flex flex-col items-center">
+                <h2 className="text-2xl font-normal text-gray-900 tracking-tighter uppercase italic font-luckiest-guy">
+                  {item.pokemonName.split(" / ")[0]}
+                </h2>
+                {item.pokemonName.includes(" / ") && (
+                  <p className="text-xs font-black text-gray-400 uppercase tracking-widest font-staatliches">
+                    {item.pokemonName.split(" / ")[1]}
+                  </p>
+                )}
+              </div>
               <div className="pt-4 border-t border-gray-50 flex items-center justify-center text-[10px] font-black text-gray-400 group-hover:text-pk-red transition-colors tracking-widest uppercase">
                 <span>View Details</span>
                 <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />

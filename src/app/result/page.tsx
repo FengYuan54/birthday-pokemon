@@ -1,5 +1,6 @@
 import { fetchPokemonDetails, getPokemonIdByBirthday, generateBirthdayMessage } from "@/lib/pokemon";
 import { PokemonCard } from "@/components/PokemonCard";
+import { ResultNav } from "@/components/ResultNav";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -30,7 +31,7 @@ export default async function ResultPage({
   const month = parseInt(m);
   const day = parseInt(d);
 
-  const pokemonId = getPokemonIdByBirthday(month, day);
+  const pokemonId = getPokemonIdByBirthday(year, month, day);
   
   try {
     const pokemon = await fetchPokemonDetails(pokemonId);
@@ -49,7 +50,7 @@ export default async function ResultPage({
             userId: user.id,
             birthday: new Date(year, month - 1, day),
             pokemonId: pokemon.id,
-            pokemonName: pokemon.name,
+            pokemonName: `${pokemon.name} / ${pokemon.enName}`,
             imageUrl: pokemon.imageUrl,
           },
         });
@@ -58,21 +59,7 @@ export default async function ResultPage({
 
     return (
       <div className="space-y-12 pb-20 px-4">
-        <div className="flex justify-between items-center max-w-md mx-auto">
-          <Link href="/" className="group flex items-center space-x-2 text-[10px] font-black tracking-[0.2em] text-gray-400 hover:text-pk-red transition-all uppercase">
-            <div className="p-2 glass rounded-xl group-hover:bg-pk-red group-hover:text-white transition-all shadow-sm">
-              <ArrowLeft className="w-4 h-4" />
-            </div>
-            <span>RETRY</span>
-          </Link>
-          <Link href={`/result?y=${y}&m=${m}&d=${d}`} className="group flex items-center space-x-2 text-[10px] font-black tracking-[0.2em] text-gray-400 hover:text-pk-blue transition-all uppercase text-right">
-            <span>NEW QUOTE</span>
-            <div className="p-2 glass rounded-xl group-hover:bg-pk-blue group-hover:text-white transition-all shadow-sm">
-              <RefreshCw className="w-4 h-4" />
-            </div>
-          </Link>
-        </div>
-
+        <ResultNav y={y} m={m} d={d} />
         <PokemonCard pokemon={pokemon} message={message} />
       </div>
     );
@@ -84,7 +71,7 @@ export default async function ResultPage({
         </div>
         <h1 className="text-2xl font-black italic uppercase tracking-tighter text-pk-dark-blue">Connection Lost</h1>
         <p className="text-[10px] font-black text-gray-400 tracking-[0.1em] uppercase mt-2 mb-8">PokeAPI is taking a nap...</p>
-        <Link href="/" className="w-full bg-pk-red text-white px-8 py-4 rounded-2xl font-black italic tracking-tight hover:scale-105 transition-all shadow-xl shadow-pk-red/20 inline-block uppercase">
+        <Link href="/" className="w-full bg-pk-red text-white px-8 py-4 rounded-2xl font-black italic tracking-tight hover:scale-105 transition-all shadow-xl shadow-pk-red/20 inline-block uppercase text-center">
           RETRY
         </Link>
       </div>

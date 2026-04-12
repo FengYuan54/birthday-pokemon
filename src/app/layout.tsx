@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
-import { Luckiest_Guy, Staatliches, Inter } from "next/font/google";
+import { Luckiest_Guy, Staatliches, Inter, Quicksand, DotGothic16 } from "next/font/google";
+
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
+  subsets: ["latin"],
+});
+
+const dotGothic = DotGothic16({
+  variable: "--font-dot-gothic",
+  weight: "400",
+  subsets: ["latin"],
+});
 import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 import { Navbar } from "@/components/Navbar";
@@ -34,9 +45,9 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
-      className={`${inter.variable} ${luckiestGuy.variable} ${staatliches.variable} h-full antialiased`}
+      className={`${inter.variable} ${luckiestGuy.variable} ${staatliches.variable} ${quicksand.variable} ${dotGothic.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-gray-50 text-gray-900">
+      <body className="min-h-full flex flex-col text-gray-900">
         <AuthProvider>
           <Navbar />
           <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">

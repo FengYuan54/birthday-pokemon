@@ -50,7 +50,7 @@ export function BirthdayForm() {
               <input
                 {...register(field as any)}
                 className={cn(
-                  "w-full px-4 py-4 bg-gray-50 border-none rounded-2xl text-center text-xl font-black focus:ring-4 focus:ring-pk-yellow/30 transition-all outline-none",
+                  "w-full px-4 py-4 bg-gray-50 border-none rounded-2xl text-center text-xl font-black focus:ring-4 focus:ring-pk-yellow/30 transition-all outline-none pokemon-font",
                   errors[field as keyof FormData] && "ring-4 ring-pk-red/20"
                 )}
                 placeholder={field.toUpperCase()}

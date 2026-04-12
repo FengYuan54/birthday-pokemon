@@ -2,7 +2,7 @@
 
 import { PokemonDetails } from "@/lib/pokemon";
 import { motion } from "framer-motion";
-import { Ruler, Weight, Info, ShieldCheck } from "lucide-react";
+import { Ruler, Weight } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -38,23 +38,23 @@ export function PokemonCard({ pokemon, message }: { pokemon: PokemonDetails; mes
     >
       {/* Dynamic Glow Background */}
       <div className={cn(
-        "absolute -inset-4 rounded-[4rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700",
+        "absolute -inset-4 rounded-[4rem] blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-700",
         typeColors[primaryType] || "bg-gray-400"
       )} />
 
-      <div className="relative glass rounded-[3rem] overflow-hidden shadow-2xl border-b-[12px] border-black/5">
+      <div className="relative glass rounded-[3rem] overflow-hidden shadow-2xl border-b-[12px] border-black/5 bg-white/80">
         {/* Header with Type Gradient */}
         <div className={cn(
           "h-64 relative flex items-center justify-center p-8",
           typeColors[primaryType] || "bg-gray-100"
         )}>
           {/* Subtle Pattern Overlay */}
-          <div className="absolute inset-0 opacity-10 pokeball-bg" />
+          <div className="absolute inset-0 opacity-15 pokeball-bg" />
           
           <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-56 h-56 z-10 drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)]"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="relative w-56 h-56 z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
           >
             <Image
               src={pokemon.imageUrl}
@@ -66,7 +66,7 @@ export function PokemonCard({ pokemon, message }: { pokemon: PokemonDetails; mes
           </motion.div>
           
           <div className="absolute top-6 right-8">
-             <span className="text-6xl font-black text-black/10 tracking-tighter font-staatliches">
+             <span className="text-6xl font-black text-black/15 tracking-tighter font-staatliches">
               #{pokemon.id.toString().padStart(4, "0")}
             </span>
           </div>
@@ -78,34 +78,41 @@ export function PokemonCard({ pokemon, message }: { pokemon: PokemonDetails; mes
             {pokemon.types.map((type) => (
               <span
                 key={type}
-                className={cn("type-badge", typeColors[type] || "bg-gray-400")}
+                className={cn("type-badge px-4 py-1.5 rounded-xl", typeColors[type] || "bg-gray-400")}
               >
                 {type}
               </span>
             ))}
           </div>
 
-          <h2 className="text-5xl font-black text-gray-900 tracking-tighter uppercase italic font-luckiest-guy">
-            {pokemon.name}
-          </h2>
+          {/* Bilingual Name Display with Adjusted Layout to prevent overlap */}
+          <div className="flex flex-col items-center space-y-1">
+            <h2 className="text-4xl sm:text-5xl font-normal text-gray-900 tracking-tight font-luckiest-guy leading-tight pokemon-font">
+              {pokemon.name}
+            </h2>
+            <div className="h-px w-12 bg-gray-100" />
+            <p className="text-lg sm:text-xl font-medium italic text-gray-400 uppercase tracking-[0.2em] font-staatliches leading-none pokemon-font">
+              {pokemon.enName}
+            </p>
+          </div>
 
-          <div className="bg-pk-yellow/10 border-2 border-pk-yellow/20 rounded-2xl p-4 transform -rotate-1">
-            <p className="text-pk-dark-blue font-black italic tracking-tight">
+          <div className="bg-pk-yellow/15 border-2 border-pk-yellow/30 rounded-[2rem] p-5 transform -rotate-1 shadow-inner">
+            <p className="text-pk-dark-blue font-bold italic tracking-tight leading-relaxed">
               "{message}"
             </p>
           </div>
 
           {/* Grid Stats */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col items-center p-3 bg-gray-50 rounded-2xl border-b-4 border-gray-100">
-              <Ruler size={16} className="text-gray-400 mb-1" />
-              <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Height</span>
-              <span className="text-lg font-black text-gray-800">{pokemon.height}m</span>
+            <div className="flex flex-col items-center p-4 bg-white/50 rounded-2xl border-b-4 border-gray-100 shadow-sm">
+              <Ruler size={18} className="text-pk-blue mb-1" />
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Height</span>
+              <span className="text-xl font-black text-gray-800">{pokemon.height}m</span>
             </div>
-            <div className="flex flex-col items-center p-3 bg-gray-50 rounded-2xl border-b-4 border-gray-100">
-              <Weight size={16} className="text-gray-400 mb-1" />
-              <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Weight</span>
-              <span className="text-lg font-black text-gray-800">{pokemon.weight}kg</span>
+            <div className="flex flex-col items-center p-4 bg-white/50 rounded-2xl border-b-4 border-gray-100 shadow-sm">
+              <Weight size={18} className="text-pk-red mb-1" />
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Weight</span>
+              <span className="text-xl font-black text-gray-800">{pokemon.weight}kg</span>
             </div>
           </div>
         </div>
