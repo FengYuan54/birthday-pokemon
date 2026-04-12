@@ -72,19 +72,53 @@ body {
   letter-spacing: -0.02em;
 }
 
-.main-title {
-  @apply font-luckiest-guy tracking-tighter leading-none text-pk-dark-blue;
+/* Classic Pokémon Logo Style - High Saturation Yellow with Blue Stroke */
+.classic-pokemon-logo {
+  @apply font-luckiest-guy tracking-normal leading-none;
   font-weight: 900;
+  color: #FFCB05; /* Official Yellow */
+  -webkit-text-stroke: 8px #3C5AA6; /* Official Blue Outline */
   paint-order: stroke fill;
-  -webkit-text-stroke: 6px var(--color-pk-white);
-  text-shadow: 0 4px 12px rgba(60, 90, 166, 0.3), 0 0 20px rgba(255, 255, 255, 0.8);
-  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 6px 0 #2A75BB) drop-shadow(0 12px 24px rgba(0,0,0,0.2));
+  transform: skew(-5deg) rotate(-2deg);
+  display: inline-block;
+  position: relative;
 }
 
-.main-title-gradient {
-  background: linear-gradient(180deg, #3C5AA6 0%, #2A75BB 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.classic-pokemon-logo-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #FFCB05;
+  -webkit-text-stroke: 0;
+  z-index: 1;
+}
+
+/* Secondary logo style for 'MY BIRTHDAY' */
+.birthday-logo-style {
+  @apply font-luckiest-guy tracking-widest leading-none;
+  color: #FFFFFF;
+  -webkit-text-stroke: 6px #FF5A5F;
+  paint-order: stroke fill;
+  filter: drop-shadow(0 4px 0 #C62828);
+}
+
+.character-standing {
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.character-standing:hover {
+  transform: translateY(-10px) scale(1.1);
+  filter: drop-shadow(0 15px 15px rgba(0,0,0,0.3));
+}
+
+/* 增强饱和度的角色滤镜 */
+.vibrant-pokemon {
+  filter: saturate(1.3) contrast(1.05) drop-shadow(0 15px 25px rgba(0,0,0,0.15));
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Glassmorphism */
