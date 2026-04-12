@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --font-inter: var(--font-inter);
+  --font-luckiest-guy: var(--font-luckiest-guy);
+  --font-staatliches: var(--font-staatliches);
+  
+  --color-pk-red: #FF0000;
+  --color-pk-white: #FFFFFF;
+  --color-pk-yellow: #FFCB05;
+  --color-pk-blue: #2A75BB;
+  --color-pk-dark-blue: #3C5AA6;
+  --color-pk-gold: #C7A008;
+
+  @keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-10deg); }
+    40% { transform: rotate(10deg); }
+    60% { transform: rotate(-10deg); }
+    80% { transform: rotate(10deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes bg-scroll {
+    from { background-position: 0 0; }
+    to { background-position: 100px 100px; }
+  }
+
+  --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-bg-scroll: bg-scroll 20s linear infinite;
+}
+
+:root {
+  --background: #fdfdfd;
+  --foreground: #1a1a1a;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+/* Pokeball Pattern Background */
+.pokeball-bg {
+  background-image: radial-gradient(circle at center, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.03) 10%, transparent 10.1%);
+  background-size: 40px 40px;
+  animation: bg-scroll 60s linear infinite;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Pokemon Type Badges Styles */
+.type-badge {
+  @apply px-3 py-1 rounded-md text-xs font-bold uppercase tracking-widest text-white shadow-sm;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
