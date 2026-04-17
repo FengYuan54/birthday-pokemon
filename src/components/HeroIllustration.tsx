@@ -3,10 +3,21 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const iconicPokemon = [
-  { id: 25, name: "Pikachu", x: "0%", y: "0%", z: 50, scale: 1.2, delay: 0.2 },
-  { id: 4, name: "Charmander", x: "-25%", y: "10%", z: 40, scale: 0.9, delay: 0.4 },
-  { id: 7, name: "Squirtle", x: "25%", y: "10%", z: 40, scale: 0.9, delay: 0.6 },
+interface PokemonIllustration {
+  id: number;
+  name: string;
+  x: string;
+  y: string;
+  z: number;
+  scale: number;
+  delay: number;
+  animate?: "float" | "none";
+}
+
+const iconicPokemon: PokemonIllustration[] = [
+  { id: 25, name: "Pikachu", x: "0%", y: "0%", z: 50, scale: 1.2, delay: 0.2, animate: "float" },
+  { id: 4, name: "Charmander", x: "-25%", y: "10%", z: 40, scale: 0.9, delay: 0.4, animate: "float" },
+  { id: 7, name: "Squirtle", x: "25%", y: "10%", z: 40, scale: 0.9, delay: 0.6, animate: "float" },
   { id: 1, name: "Bulbasaur", x: "-45%", y: "20%", z: 30, scale: 0.8, delay: 0.8 },
   { id: 52, name: "Meowth", x: "-60%", y: "30%", z: 20, scale: 0.7, delay: 1.2 },
   { id: 54, name: "Psyduck", x: "60%", y: "30%", z: 20, scale: 0.7, delay: 1.4 },
